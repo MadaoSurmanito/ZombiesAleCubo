@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Premio
   - salida
+  - Enemigo
   layers:
   - Default
   - TransparentFX

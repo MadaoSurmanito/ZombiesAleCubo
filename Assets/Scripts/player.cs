@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,9 @@ public class player : MonoBehaviour
     Transform salida;
 
     float proximoDisparo = 0f;
+    public GameObject Vidas;
+    public int vidasActual;
+    public Texture vidaMala;
 
     float tiempoDeDisparo = 0.3f;
 
@@ -24,6 +28,7 @@ public class player : MonoBehaviour
     {
         salida =
             gameObject.transform.GetChild(0).GetChild(0).GetChild(0).transform;
+        vidasActual = 3;
     }
 
     // Update is called once per frame
@@ -54,10 +59,28 @@ public class player : MonoBehaviour
         }
     }
 
-        // Metodo para actualizar la puntuacion
+    // Metodo para actualizar la puntuacion
     public void actualizarPuntuacion(int puntos)
     {
         puntuacionPlayer += puntos;
         puntuacionText.text = "Puntuación: " + puntuacionPlayer;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("TOCADO");
+        if(other.gameObject.CompareTag("Enemigo"))
+        {
+            if(vidasActual > 0)
+            {
+                Vidas.transform.GetChild(vidasActual-1).GetComponent<RawImage>().texture = vidaMala;
+            }
+            else
+            {
+                SceneManager.LoadScene("Fin");
+            }
+
+            vidasActual--;
+        }
     }
 }
