@@ -9,6 +9,8 @@ public class Enemigos : MonoBehaviour
 
     Transform target;
 
+
+
     float vidaRestante;
 
     public Image barraVida;
@@ -16,7 +18,7 @@ public class Enemigos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;       
         pathfinder = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
@@ -37,7 +39,13 @@ public class Enemigos : MonoBehaviour
     public void heMuerto()
     {
         // Aumentar la putuacion del player
-        GameObject.FindGameObjectWithTag("Player").GetComponent<player>().actualizarPuntuacion(100);
+        GameObject
+            .FindGameObjectWithTag("Player")
+            .GetComponent<player>()
+            .actualizarPuntuacion(100);
         Destroy (gameObject);
     }
+
+
 }
+
