@@ -36,6 +36,8 @@ public class Enemigos : MonoBehaviour
 
     public void heMuerto()
     {
+        // Aumentar la putuacion del player
+        GameObject.FindGameObjectWithTag("Player").GetComponent<player>().actualizarPuntuacion(100);
         Destroy (gameObject);
     }
 }

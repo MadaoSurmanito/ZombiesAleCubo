@@ -18,6 +18,8 @@ public class bala : MonoBehaviour
     {
         float movDitancia = Time.deltaTime * velocidad;
         transform.Translate(Vector3.up * movDitancia);
+        // Si la bala no ha tocado nada en 3 segundos, se destruye
+        Destroy(gameObject, 3);
     }
 
     void OnTriggerEnter(Collider other)
